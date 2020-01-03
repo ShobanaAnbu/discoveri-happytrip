@@ -32,5 +32,17 @@ echo "Deploying"
 deploy adapters: [tomcat7(credentialsId: '98e9cbd9-106c-4efa-8238-9888f9bc8fc3', path: '', url: 'http://localhost:8085')], contextPath: 'happytrip', war: '**/*.war'
 }
 }
+  
+  stage('Email Notification'){
+    steps{
+    mail bcc: '', body: '''hi,
+
+  Email Notification for Happytrip
+
+Thanks,
+Shobana A''', cc: '', from: '', replyTo: '', subject: 'Email Notification', to: 'testautomation991@gmail.com'
+    
+    }
+  }
 }
 }
