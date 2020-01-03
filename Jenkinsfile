@@ -9,12 +9,13 @@ pipeline {
 		stage('Build') { 
 			tools {
 				jdk 'jdk8'
-				maven 'apache-maven-3.5.4'
+				maven 'apache-maven-3.6.1'
 			}
 			steps {
 				powershell 'java -version'
 				powershell 'mvn -version'
 				powershell 'mvn clean package'
+				archieveArtifacts 'target/*.war'
 
 			}
 		}
