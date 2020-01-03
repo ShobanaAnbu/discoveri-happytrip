@@ -19,6 +19,9 @@ pipeline {
 
 			}
 		}
+		stage('Deploy approval'){
+	    		input "Deploy to prod?"
+				}
 		stage('Deploy') {
 			steps{
 				echo "Deploying"
