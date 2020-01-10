@@ -6,7 +6,7 @@ steps {
 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/prabhavagrawal/discoveri-happytrip.git']]])
 }
 }
- stage('SonarQube Analysis') {
+ stage('SonarQube') {
   steps {
         //sonarqube 'sonar_scanner', 'http://localhost:9000'
    powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
