@@ -12,16 +12,17 @@ tools {
     
 jdk 'jdk8'
 maven 'apache-maven-3.6.1'
- sonarQube 'sonar_scanner'
+// sonarQube 'sonar_scanner'
 }
 steps {
 powershell 'java -version'
 powershell 'mvn -version'
-withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-        }
+
 powershell 'mvn clean package'
 powershell 'mvn clean package sonar:sonar'
+ def scannerHome = tool 'SonarQubeScanner3'
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
 archiveArtifacts 'target/*.war'
 }
 }
