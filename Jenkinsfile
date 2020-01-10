@@ -21,7 +21,7 @@ agent any
 		stage ('soanr Analysis'){
 			steps{
 				withSonarQubeEnv(installationName: 'sonar'){
-				bat label: '', script: 'mvn sonar:sonar'
+				powershell label: '', script: 'mvn sonar:sonar'
 		}
 		}
 		}
