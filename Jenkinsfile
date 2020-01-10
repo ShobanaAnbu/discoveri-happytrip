@@ -19,6 +19,10 @@ agent any
 }
   }
 		stage ('soanr Analysis'){
+			tools {
+			jdk 'jdk8'
+			maven 'apache-maven-3.6.1'
+}
 			steps{
 				withSonarQubeEnv(installationName: 'sonar'){
 				powershell label: '', script: 'mvn sonar:sonar'
