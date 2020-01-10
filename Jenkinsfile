@@ -14,8 +14,8 @@ maven 'apache-maven-3.6.1'
 }
 steps {
 powershell 'java -version'
-withSonarQubeEnv('My SonarQube Server')
 powershell 'mvn -version'
+withSonarQubeEnv('sonar_scanner')
 powershell 'mvn clean package'
 powershell 'mvn clean package sonar:sonar'
 archiveArtifacts 'target/*.war'
