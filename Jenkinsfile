@@ -21,10 +21,6 @@ steps {
 powershell 'java -version'
 powershell 'mvn -version'
 powershell 'mvn clean package'
-//powershell 'mvn clean package sonar:sonar'
- //def scannerHome = tool 'SonarQubeScanner3'
-               // withSonarQubeEnv('SonarQube') {
-                    //sh "${scannerHome}/bin/sonar-scanner"
 archiveArtifacts 'target/*.war'
 //}
 }
