@@ -1,31 +1,30 @@
 pipeline {
 agent any
-stages {
-stage('Source') {
-steps {
-checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/prabhavagrawal/discoveri-happytrip.git']]])
+	stages {
+		stage('Source') {
+		steps {
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/prabhavagrawal/discoveri-happytrip.git']]])
+		}
+		}
+		stage('Build') {
+			tools {
+			jdk 'jdk8'
+			maven 'apache-maven-3.6.1'
 }
-}
- stage('SonarQube') {
-  steps {
-        //sonarqube 'sonar_scanner', 'http://localhost:9000'
-   powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
-    }
-  }
- stage('Build') {
-tools {
-jdk 'jdk8'
-maven 'apache-maven-3.6.1'
-// sonarQube 'sonar_scanner'
-}
-steps {
-
-powershell 'java -version'
-powershell 'mvn -version'
-powershell 'mvn clean package'
-archiveArtifacts 'target/*.war'
+		steps {
+			powershell 'java -version'
+			powershell 'mvn -version'
+			powershell 'mvn clean package'
+			archiveArtifacts 'target/*.war'
 }
   }
+		stage ('soanr Analysis'){
+			steps{
+				withSonarQubeEnv(installationName: 'sonar'){
+				bat label: '', script: 'mvn sonar:sonar'
+		}
+		}
+		}
   stage('Approval') {
             steps {
                 script {
