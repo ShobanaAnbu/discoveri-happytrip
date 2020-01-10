@@ -13,7 +13,6 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleC
  stage('Build) 
   {
 tools {
-    
 jdk 'jdk8'
 maven 'apache-maven-3.6.1'
 // sonarQube 'sonar_scanner'
