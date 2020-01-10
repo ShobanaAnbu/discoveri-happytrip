@@ -7,7 +7,9 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleC
 }
 }
  stage('SonarQube Analysis') {
-        sonarqube 'sonar_scanner', 'http://localhost:9000'
+  steps {
+        //sonarqube 'sonar_scanner', 'http://localhost:9000'
+   powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
     }
   }
  stage('Build') {
@@ -17,7 +19,7 @@ maven 'apache-maven-3.6.1'
 // sonarQube 'sonar_scanner'
 }
 steps {
-powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+
 powershell 'java -version'
 powershell 'mvn -version'
 powershell 'mvn clean package'
