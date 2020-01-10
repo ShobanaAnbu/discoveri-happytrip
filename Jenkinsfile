@@ -6,22 +6,18 @@ steps {
 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/prabhavagrawal/discoveri-happytrip.git']]])
 }
 }
-  stage('SonarQube analysis') {
-  //  def scannerHome = tool 'sonar_scanner';
-   // withSonarQubeEnv('My SonarQube Server') 
-    withSonarQubeEnv(credentialsId: 'Sonar') {
-    // some block
-}
-}
-stage('Build') {
+ stage('Build && SonarQube analysis') 
+  {
 tools {
 jdk 'jdk8'
 maven 'apache-maven-3.6.1'
 }
 steps {
 powershell 'java -version'
+withSonarQubeEnv('My SonarQube Server')
 powershell 'mvn -version'
 powershell 'mvn clean package'
+powershell 'mvn clean package sonar:sonar'
 archiveArtifacts 'target/*.war'
 }
 }
