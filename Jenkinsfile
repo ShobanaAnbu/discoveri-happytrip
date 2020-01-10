@@ -9,13 +9,17 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleC
  stage('Build && SonarQube analysis') 
   {
 tools {
+    
 jdk 'jdk8'
 maven 'apache-maven-3.6.1'
+ sonarQube 'sonar_scanner'
 }
 steps {
 powershell 'java -version'
 powershell 'mvn -version'
-withSonarQubeEnv('sonar_scanner')
+withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
 powershell 'mvn clean package'
 powershell 'mvn clean package sonar:sonar'
 archiveArtifacts 'target/*.war'
