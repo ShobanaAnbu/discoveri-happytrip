@@ -7,7 +7,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleC
 }
 }
   stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner 4.0';
+    def scannerHome = tool 'sonar_scanner';
     withSonarQubeEnv('My SonarQube Server') 
   }
 stage('Build') {
