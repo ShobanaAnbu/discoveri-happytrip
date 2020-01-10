@@ -12,7 +12,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleC
     withSonarQubeEnv(credentialsId: 'Sonar') {
     // some block
 }
-//  }
+}
 stage('Build') {
 tools {
 jdk 'jdk8'
