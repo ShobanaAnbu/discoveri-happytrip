@@ -6,10 +6,10 @@ steps {
 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/prabhavagrawal/discoveri-happytrip.git']]])
 }
 }
-  stage('SonarQube analysis') {
-    def scannerHome = tool 'sonar_scanner';
-    withSonarQubeEnv('My SonarQube Server') 
-  }
+  //stage('SonarQube analysis') {
+  //  def scannerHome = tool 'sonar_scanner';
+   // withSonarQubeEnv('My SonarQube Server') 
+//  }
 stage('Build') {
 tools {
 jdk 'jdk8'
