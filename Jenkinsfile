@@ -21,7 +21,7 @@ archiveArtifacts 'target/*.war'
   stage('Approval') {
             steps {
                 script {
-                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'rkivisto,admin')]
+                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'rkivisto,admin'
                  //   sleep time: deploymentDelay.toInteger(), unit: 'HOURS'
                 }
             }
