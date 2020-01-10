@@ -26,6 +26,7 @@ powershell 'mvn clean package sonar:sonar'
 archiveArtifacts 'target/*.war'
 }
 }
+  }
   stage('Approval') {
             steps {
                 script {
